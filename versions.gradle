@@ -24,12 +24,14 @@ versions.easyprefs = '1.9.0'
 versions.lottie = '2.8.0'
 versions.android_gradle = "3.2.1"
 versions.hugo = '1.2.1'
+versions.material = '1.1.0-alpha02'
 
 def deps = [:]
 
 def androidx = [:]
 androidx.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
 androidx.constraintlayout = "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+androidx.material = "com.google.android.material:material:$versions.material"
 deps.androidx = androidx
 
 def atsl = [:]

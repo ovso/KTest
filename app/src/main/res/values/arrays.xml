@@ -1,0 +1,6 @@
+<resources>
+  <string-array name="page_title">
+    <item>검색 결과</item>
+    <item>내 보관함</item>
+  </string-array>
+</resources>
