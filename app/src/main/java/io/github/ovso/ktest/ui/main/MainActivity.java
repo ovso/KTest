@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
+import butterknife.OnPageChange;
 import com.google.android.material.tabs.TabLayout;
 import io.github.ovso.ktest.R;
 import io.github.ovso.ktest.ui.base.listener.SimpleOnQueryTextListener;
@@ -15,12 +16,14 @@ import io.github.ovso.ktest.ui.main.search.SearchFragment;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View {
   @BindView(R.id.tablayout_main) TabLayout tabLayout;
   @BindView(R.id.viewpager_main) ViewPager viewPager;
   @Inject MainPresenter presenter;
+  private Menu optionsMenu;
 
   @Override protected int getLayoutResId() {
     return R.layout.activity_main;
@@ -29,6 +32,18 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
   @Override public void setupTabLayout() {
     tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
     tabLayout.setTabMode(TabLayout.MODE_FIXED);
+  }
+
+  @Override public void showSearchView() {
+    if (Objects.nonNull(optionsMenu)) {
+      optionsMenu.findItem(R.id.action_search).setVisible(true);
+    }
+  }
+
+  @Override public void hideSearchView() {
+    if (Objects.nonNull(optionsMenu)) {
+      optionsMenu.findItem(R.id.action_search).setVisible(false);
+    }
   }
 
   @Override public void setupViewPager() {
@@ -41,10 +56,14 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
     tabLayout.setupWithViewPager(viewPager);
   }
 
+  @OnPageChange(R.id.viewpager_main) void onPageSelected(int position) {
+    presenter.onPageSelected(position);
+  }
+
   private List<Fragment> getFragments() {
     List<Fragment> fragments = new ArrayList<>();
-    fragments.add(SearchFragment.newInstance(null));
-    fragments.add(BucketFragment.newInstance(null));
+    fragments.add(SearchFragment.newInstance());
+    fragments.add(BucketFragment.newInstance());
     return fragments;
   }
 
@@ -53,6 +72,7 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
     getMenuInflater().inflate(R.menu.options_menu, menu);
     MenuItem searchMenu = menu.findItem(R.id.action_search);
     ((SearchView) searchMenu.getActionView()).setOnQueryTextListener(simpleOnQueryTextListener);
+    optionsMenu = menu;
     return true;
   }
 
