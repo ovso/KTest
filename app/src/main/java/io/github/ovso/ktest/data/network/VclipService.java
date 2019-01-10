@@ -6,7 +6,7 @@ import java.util.Map;
 import retrofit2.http.GET;
 import retrofit2.http.QueryMap;
 
-public interface ImageService {
-  @GET("/v2/search/image")
-  Observable<Search> images(@QueryMap Map<String, Object> queryMap);
+public interface VclipService {
+  @GET("/v2/search/vclip")
+  Observable<Search> vclip(@QueryMap Map<String, Object> queryMap);
 }

@@ -1,6 +1,8 @@
 package io.github.ovso.ktest.data.network;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -14,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public abstract class BaseRequest<T> {
   public final static int TIMEOUT_SECONDS = 7;
+
   public T getApi() {
     return createRetrofit().create(getApiClass());
   }
@@ -58,4 +61,11 @@ public abstract class BaseRequest<T> {
     return client;
   }
 
+  protected static Map<String, Object> createParam(String query) {
+    Map<String, Object> param = new HashMap<>();
+    param.put("query", query);
+    param.put("sort", "accuracy");
+    param.put("size", 5);
+    return param;
+  }
 }

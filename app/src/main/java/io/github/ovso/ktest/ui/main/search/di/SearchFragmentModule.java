@@ -4,10 +4,12 @@ import androidx.lifecycle.Lifecycle;
 import dagger.Module;
 import dagger.Provides;
 import io.github.ovso.ktest.App;
+import io.github.ovso.ktest.data.network.ImageRequest;
+import io.github.ovso.ktest.data.network.VclipRequest;
 import io.github.ovso.ktest.data.network.model.image.Document;
 import io.github.ovso.ktest.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.ktest.ui.base.adapter.BaseAdapterView;
-import io.github.ovso.ktest.ui.main.MainActivity;
+import io.github.ovso.ktest.ui.base.rx.Schedulers;
 import io.github.ovso.ktest.ui.main.search.SearchFragment;
 import io.github.ovso.ktest.ui.main.search.SearchFragmentPresenter;
 import io.github.ovso.ktest.ui.main.search.SearchFragmentPresenterImpl;
@@ -19,9 +21,17 @@ import javax.inject.Singleton;
 @Module public class SearchFragmentModule {
 
   @Singleton @Provides SearchFragmentPresenter provideSearchFragmentPresenter(
-      SearchFragmentPresenter.View view, Lifecycle lifecycle, RxBus rxBus) {
-    SearchFragmentArgs args =
-        new SearchFragmentArgs.Builder().setView(view).setRxBus(rxBus).build();
+      SearchFragmentPresenter.View view, Lifecycle lifecycle, RxBus rxBus,
+      ImageRequest imageRequest, VclipRequest vclipRequest, Schedulers schedulers) {
+
+    SearchFragmentArgs args = new SearchFragmentArgs.Builder()
+        .setView(view)
+        .setRxBus(rxBus)
+        .setImageRequest(imageRequest)
+        .setVclipRequest(vclipRequest)
+        .setSchedulers(schedulers)
+        .build();
+
     SearchFragmentPresenter presenter = new SearchFragmentPresenterImpl(args);
     lifecycle.addObserver(presenter);
     return presenter;

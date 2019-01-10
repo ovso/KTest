@@ -5,15 +5,15 @@ import io.reactivex.Observable;
 import javax.inject.Inject;
 import okhttp3.Headers;
 
-public class ImageRequest extends BaseRequest<ImageService> {
+public class VclipRequest extends BaseRequest<VclipService> {
 
   @Inject
-  public ImageRequest() {
+  public VclipRequest() {
 
   }
 
   @Override protected Class getApiClass() {
-    return ImageService.class;
+    return VclipService.class;
   }
 
   @Override protected Headers createHeaders() {
@@ -24,7 +24,7 @@ public class ImageRequest extends BaseRequest<ImageService> {
     return BaseUrl.SEARCH;
   }
 
-  public Observable<Search> images(String query) {
-    return getApi().images(createParam(query));
+  public Observable<Search> vclip(String query) {
+    return getApi().vclip(createParam(query));
   }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.ToString;
 
-@Getter @ToString public class ImageData {
+@Getter @ToString public class Search {
   private Meta meta;
   private List<Document> documents;
 }

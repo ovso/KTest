@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="io.github.ovso.ktest">
 
+  <uses-permission android:name="android.permission.INTERNET"/>
   <application
       android:name=".App"
       android:allowBackup="false"

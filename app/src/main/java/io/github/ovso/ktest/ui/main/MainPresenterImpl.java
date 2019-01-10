@@ -31,7 +31,7 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public boolean onQueryTextChange(String newText) {
     rxBus.send(new RxBusEvent(newText));
-    return true;
+    return false;
   }
 
   @Override public void onPageSelected(int position) {

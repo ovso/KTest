@@ -7,6 +7,7 @@ import lombok.ToString;
 @Getter @ToString public class Document {
   private String collection;
   private String thumbnail_url;
+  private String thumbnail;
   private String image_url;
   private int width;
   private int height;
