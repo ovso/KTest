@@ -25,6 +25,7 @@
       android:layout_height="?android:actionBarSize"
       android:layout_gravity="right|bottom"
       android:layout_margin="16dp"
+      app:lottie_progress="1"
       app:lottie_autoPlay="false"
       app:lottie_fileName="like.json"
       app:lottie_loop="false"

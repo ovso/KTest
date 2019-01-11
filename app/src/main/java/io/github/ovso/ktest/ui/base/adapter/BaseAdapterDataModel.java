@@ -10,4 +10,6 @@ public interface BaseAdapterDataModel<T> {
   int getSize();
 
   void clear();
+
+  void remove(T document);
 }

@@ -27,6 +27,7 @@ public class SearchViewHolder extends BaseViewHolder<Document> {
   @Override public void bind(Document $data) {
     super.bind($data);
     Glide.with(itemView).load(getImageUrl()).into(thumbImageView);
+    bucketLottie.setProgress(getProgress());
   }
 
   private String getImageUrl() {
@@ -38,12 +39,13 @@ public class SearchViewHolder extends BaseViewHolder<Document> {
   }
 
   @OnClick(R.id.lottie_search_bucket) void onClick() {
+    data.setBucket(!data.isBucket());
     bucketLottie.setProgress(getProgress());
     getRxBus().send(new RxBusEvent(data));
   }
 
   private float getProgress() {
-    return bucketLottie.getProgress() == 0 ? 1 : 0;
+    return data.isBucket() ? 1 : 0;
   }
 
   private RxBus getRxBus() {

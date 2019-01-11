@@ -47,6 +47,10 @@ public class SearchAdapter extends RecyclerView.Adapter<BaseViewHolder<Document>
     items.clear();
   }
 
+  @Override public void remove(Document document) {
+    items.remove(document);
+  }
+
   @Override public void refresh() {
     notifyDataSetChanged();
   }
