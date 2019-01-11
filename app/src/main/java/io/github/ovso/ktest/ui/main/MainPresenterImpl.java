@@ -36,6 +36,7 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public boolean onQueryTextChange(String query) {
+    view.navigateToSearchFragment();
     compositeDisposable.clear();
     Single.just(query)
         .subscribeOn(schedulers.io())
@@ -59,14 +60,6 @@ public class MainPresenterImpl implements MainPresenter {
       Timber.e(e);
     }
   };
-
-  @Override public void onPageSelected(int position) {
-    if (position == 0) {
-      view.showSearchView();
-    } else {
-      view.hideSearchView();
-    }
-  }
 
   @AllArgsConstructor public final static class RxBusEvent {
     @Getter private String newText;

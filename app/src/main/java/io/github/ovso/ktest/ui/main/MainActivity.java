@@ -6,7 +6,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
-import butterknife.OnPageChange;
 import com.google.android.material.tabs.TabLayout;
 import io.github.ovso.ktest.R;
 import io.github.ovso.ktest.ui.base.listener.SimpleOnQueryTextListener;
@@ -46,6 +45,10 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
     }
   }
 
+  @Override public void navigateToSearchFragment() {
+    viewPager.setCurrentItem(0, true);
+  }
+
   @Override public void setupViewPager() {
     MainFragmentPagerAdapter adapter = new MainFragmentPagerAdapter.Builder()
         .setFragmentManager(getSupportFragmentManager())
@@ -54,10 +57,6 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
         .build();
     viewPager.setAdapter(adapter);
     tabLayout.setupWithViewPager(viewPager);
-  }
-
-  @OnPageChange(R.id.viewpager_main) void onPageSelected(int position) {
-    presenter.onPageSelected(position);
   }
 
   private List<Fragment> getFragments() {

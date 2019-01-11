@@ -14,8 +14,6 @@ public interface MainPresenter extends LifecycleObserver {
 
   boolean onQueryTextChange(String newText);
 
-  void onPageSelected(int position);
-
   interface View {
 
     void setupViewPager();
@@ -25,5 +23,7 @@ public interface MainPresenter extends LifecycleObserver {
     void showSearchView();
 
     void hideSearchView();
+
+    void navigateToSearchFragment();
   }
 }
