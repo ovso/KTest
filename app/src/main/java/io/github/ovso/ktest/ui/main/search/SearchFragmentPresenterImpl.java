@@ -4,6 +4,7 @@ import io.github.ovso.ktest.data.network.ImageRequest;
 import io.github.ovso.ktest.data.network.VclipRequest;
 import io.github.ovso.ktest.data.network.model.image.Document;
 import io.github.ovso.ktest.data.network.model.image.Search;
+import io.github.ovso.ktest.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.ktest.ui.base.rx.Schedulers;
 import io.github.ovso.ktest.ui.main.MainPresenterImpl;
 import io.github.ovso.ktest.ui.main.search.vo.SearchFragmentArgs;
@@ -13,18 +14,18 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 
 public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
 
-  private List<Document> documents = new ArrayList<>();
   private final View view;
   private final RxBus rxBus;
   private final ImageRequest imageRequest;
   private final VclipRequest vclipRequest;
   private final Schedulers schedulers;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
+  private BaseAdapterDataModel<Document> adapterDataModel;
 
   public SearchFragmentPresenterImpl(SearchFragmentArgs args) {
     view = args.getView();
@@ -32,10 +33,12 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
     imageRequest = args.getImageRequest();
     vclipRequest = args.getVclipRequest();
     schedulers = args.getSchedulers();
+    adapterDataModel = args.getAdapterDataModel();
   }
 
   @Override public void onStart() {
     view.setupRecyclerView();
+    view.setupRecyclerViewDivider();
     rxBusObservable();
   }
 
@@ -51,55 +54,46 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
   }
 
   private void reqSearch(String query) {
-    clearData();
-    Observable<List<Document>> iMap = imageRequest.images(query).map(Search::getDocuments);
-    Observable<List<Document>> vMap = vclipRequest.vclip(query).map(Search::getDocuments);
-    Observable.zip(iMap, vMap, (documents, documents2) -> {
-      documents.addAll(documents2);
-      return documents;
-    }).sorted(new Comparator<List<Document>>() {
-      @Override public int compare(List<Document> o1, List<Document> o2) {
-        return 0;
-      }
-    })
+    Observable<List<Document>> imageMap = imageRequest.images(query).map(Search::getDocuments);
+    Observable<List<Document>> vclipMap = vclipRequest.vclip(query).map(Search::getDocuments);
+    Observable.zip(imageMap, vclipMap, this::reqSearchBiFunction)
         .subscribeOn(schedulers.io())
         .observeOn(schedulers.ui())
-        .subscribe(new Observer<List<Document>>() {
-          @Override public void onSubscribe(Disposable d) {
-
-          }
-
-          @Override public void onNext(List<Document> documents) {
-
-          }
-
-          @Override public void onError(Throwable e) {
-
-          }
-
-          @Override public void onComplete() {
-
-          }
-        });
+        .subscribe(reqSearchObserver);
   }
 
-  private int toSortedLists(List<Document> documents, List<Document> documents1) {
-    return 0;
+  private List<Document> reqSearchBiFunction(List<Document> documents, List<Document> documents2) {
+    List<Document> newDocments = new ArrayList<>();
+    newDocments.addAll(documents);
+    newDocments.addAll(documents2);
+    Collections.sort(newDocments);
+    return newDocments;
   }
 
-  private List<Observable<Search>> getReqs(String query) {
-    List<Observable<Search>> reqs = new ArrayList<>();
-    reqs.add(imageRequest.images("설현"));
-    reqs.add(vclipRequest.vclip("전효성"));
-    return reqs;
-  }
+  private Observer<List<Document>> reqSearchObserver = new Observer<List<Document>>() {
+    @Override public void onSubscribe(Disposable d) {
+      compositeDisposable.add(d);
+    }
+
+    @Override public void onNext(List<Document> documents) {
+      adapterDataModel.addAll(documents);
+      view.refresh();
+    }
+
+    @Override public void onError(Throwable e) {
+
+    }
+
+    @Override public void onComplete() {
+
+    }
+  };
 
   @Override public void onDestroy() {
-    compositeDisposable.clear();
+    clear();
   }
 
-  private void clearData() {
-    documents.clear();
+  private void clear() {
     compositeDisposable.clear();
   }
 }

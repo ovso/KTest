@@ -14,5 +14,9 @@ public interface SearchFragmentPresenter extends LifecycleObserver {
   interface View {
 
     void setupRecyclerView();
+
+    void setupRecyclerViewDivider();
+
+    void refresh();
   }
 }

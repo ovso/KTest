@@ -65,7 +65,7 @@ public abstract class BaseRequest<T> {
     Map<String, Object> param = new HashMap<>();
     param.put("query", query);
     param.put("sort", "accuracy");
-    param.put("size", 5);
+    param.put("size", 2);
     return param;
   }
 }

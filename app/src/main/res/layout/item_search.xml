@@ -5,12 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     >
   <com.google.android.material.card.MaterialCardView
       android:layout_width="0dp"
       android:layout_height="196dp"
+      app:cardCornerRadius="10dp"
       app:layout_constraintDimensionRatio="2:1"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        tools:src="@android:drawable/ic_search_category_default"
+        tools:src="@android:drawable/ic_dialog_map"
         />
 
   </com.google.android.material.card.MaterialCardView>

@@ -22,7 +22,8 @@ import javax.inject.Singleton;
 
   @Singleton @Provides SearchFragmentPresenter provideSearchFragmentPresenter(
       SearchFragmentPresenter.View view, Lifecycle lifecycle, RxBus rxBus,
-      ImageRequest imageRequest, VclipRequest vclipRequest, Schedulers schedulers) {
+      ImageRequest imageRequest, VclipRequest vclipRequest, Schedulers schedulers,
+      BaseAdapterDataModel<Document> adapterDataModel) {
 
     SearchFragmentArgs args = new SearchFragmentArgs.Builder()
         .setView(view)
@@ -30,6 +31,7 @@ import javax.inject.Singleton;
         .setImageRequest(imageRequest)
         .setVclipRequest(vclipRequest)
         .setSchedulers(schedulers)
+        .setAdapterDataModel(adapterDataModel)
         .build();
 
     SearchFragmentPresenter presenter = new SearchFragmentPresenterImpl(args);
