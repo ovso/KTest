@@ -4,9 +4,7 @@ import androidx.lifecycle.Lifecycle;
 import dagger.Module;
 import dagger.Provides;
 import io.github.ovso.ktest.App;
-import io.github.ovso.ktest.data.network.ImageRequest;
-import io.github.ovso.ktest.data.network.VclipRequest;
-import io.github.ovso.ktest.data.network.model.image.Document;
+import io.github.ovso.ktest.data.network.model.Document;
 import io.github.ovso.ktest.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.ktest.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.ktest.ui.base.rx.Schedulers;
@@ -16,7 +14,7 @@ import io.github.ovso.ktest.ui.main.bucket.BucketFragmentPresenterImpl;
 import io.github.ovso.ktest.ui.main.bucket.adapter.BucketAdapter;
 import io.github.ovso.ktest.ui.main.bucket.vo.BucketFragmentArgs;
 
-import io.github.ovso.ktest.utils.RxBus;
+import io.github.ovso.ktest.ui.base.rx.RxBus;
 import javax.inject.Singleton;
 
 @Module public class BucketFragmentModule {

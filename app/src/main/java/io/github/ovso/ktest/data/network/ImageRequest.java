@@ -1,18 +1,17 @@
 package io.github.ovso.ktest.data.network;
 
-import io.github.ovso.ktest.data.network.model.image.Search;
+import io.github.ovso.ktest.data.network.model.Search;
 import io.reactivex.Observable;
 import javax.inject.Inject;
 import okhttp3.Headers;
 
 public class ImageRequest extends BaseRequest<ImageService> {
 
-  @Inject
-  public ImageRequest() {
+  @Inject ImageRequest() {
 
   }
 
-  @Override protected Class getApiClass() {
+  @Override protected Class<ImageService> getApiClass() {
     return ImageService.class;
   }
 

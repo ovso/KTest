@@ -1,11 +1,11 @@
 package io.github.ovso.ktest.ui.main.bucket;
 
-import io.github.ovso.ktest.data.network.model.image.Document;
+import io.github.ovso.ktest.data.network.model.Document;
 import io.github.ovso.ktest.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.ktest.ui.base.rx.Schedulers;
 import io.github.ovso.ktest.ui.main.bucket.vo.BucketFragmentArgs;
 import io.github.ovso.ktest.ui.main.search.adapter.SearchViewHolder;
-import io.github.ovso.ktest.utils.RxBus;
+import io.github.ovso.ktest.ui.base.rx.RxBus;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 

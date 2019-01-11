@@ -3,14 +3,14 @@ package io.github.ovso.ktest.ui.main.bucket.adapter;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import io.github.ovso.ktest.data.network.model.image.Document;
+import io.github.ovso.ktest.data.network.model.Document;
 import io.github.ovso.ktest.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.ktest.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.ktest.ui.base.adapter.BaseViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BucketAdapter extends RecyclerView.Adapter<BaseViewHolder> implements
+public class BucketAdapter extends RecyclerView.Adapter<BaseViewHolder<Document>> implements
     BaseAdapterDataModel<Document>, BaseAdapterView {
 
   private List<Document> items = new ArrayList<>();
@@ -19,11 +19,11 @@ public class BucketAdapter extends RecyclerView.Adapter<BaseViewHolder> implemen
   }
 
   @NonNull @Override
-  public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public BaseViewHolder<Document> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     return BucketViewHolder.create(parent);
   }
 
-  @Override public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+  @Override public void onBindViewHolder(@NonNull BaseViewHolder<Document> holder, int position) {
     holder.bind(items.get(position));
   }
 

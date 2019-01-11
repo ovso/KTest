@@ -3,7 +3,7 @@ package io.github.ovso.ktest;
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
 import io.github.ovso.ktest.di.DaggerAppComponent;
-import io.github.ovso.ktest.utils.RxBus;
+import io.github.ovso.ktest.ui.base.rx.RxBus;
 import lombok.Getter;
 import timber.log.Timber;
 

@@ -7,7 +7,7 @@ import io.github.ovso.ktest.App;
 import io.github.ovso.ktest.ui.main.MainActivity;
 import io.github.ovso.ktest.ui.main.MainPresenter;
 import io.github.ovso.ktest.ui.main.MainPresenterImpl;
-import io.github.ovso.ktest.utils.RxBus;
+import io.github.ovso.ktest.ui.base.rx.RxBus;
 import javax.inject.Singleton;
 
 @Module public class MainActivityModule {

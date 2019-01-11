@@ -1,4 +1,4 @@
-package io.github.ovso.ktest.utils;
+package io.github.ovso.ktest.ui.base.rx;
 
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;

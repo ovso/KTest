@@ -10,9 +10,9 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import io.github.ovso.ktest.App;
 import io.github.ovso.ktest.R;
-import io.github.ovso.ktest.data.network.model.image.Document;
+import io.github.ovso.ktest.data.network.model.Document;
 import io.github.ovso.ktest.ui.base.adapter.BaseViewHolder;
-import io.github.ovso.ktest.utils.RxBus;
+import io.github.ovso.ktest.ui.base.rx.RxBus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

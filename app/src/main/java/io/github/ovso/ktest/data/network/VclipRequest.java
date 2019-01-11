@@ -1,18 +1,17 @@
 package io.github.ovso.ktest.data.network;
 
-import io.github.ovso.ktest.data.network.model.image.Search;
+import io.github.ovso.ktest.data.network.model.Search;
 import io.reactivex.Observable;
 import javax.inject.Inject;
 import okhttp3.Headers;
 
 public class VclipRequest extends BaseRequest<VclipService> {
 
-  @Inject
-  public VclipRequest() {
+  @Inject VclipRequest() {
 
   }
 
-  @Override protected Class getApiClass() {
+  @Override protected Class<VclipService> getApiClass() {
     return VclipService.class;
   }
 

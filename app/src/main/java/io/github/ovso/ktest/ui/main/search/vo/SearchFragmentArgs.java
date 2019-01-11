@@ -2,12 +2,12 @@ package io.github.ovso.ktest.ui.main.search.vo;
 
 import io.github.ovso.ktest.data.network.ImageRequest;
 import io.github.ovso.ktest.data.network.VclipRequest;
-import io.github.ovso.ktest.data.network.model.image.Document;
+import io.github.ovso.ktest.data.network.model.Document;
 import io.github.ovso.ktest.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.ktest.ui.base.interfaces.IBuilder;
 import io.github.ovso.ktest.ui.base.rx.Schedulers;
 import io.github.ovso.ktest.ui.main.search.SearchFragmentPresenter;
-import io.github.ovso.ktest.utils.RxBus;
+import io.github.ovso.ktest.ui.base.rx.RxBus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;

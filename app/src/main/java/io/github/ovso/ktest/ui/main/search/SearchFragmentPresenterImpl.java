@@ -1,14 +1,15 @@
 package io.github.ovso.ktest.ui.main.search;
 
+import androidx.annotation.WorkerThread;
 import io.github.ovso.ktest.data.network.ImageRequest;
 import io.github.ovso.ktest.data.network.VclipRequest;
-import io.github.ovso.ktest.data.network.model.image.Document;
-import io.github.ovso.ktest.data.network.model.image.Search;
+import io.github.ovso.ktest.data.network.model.Document;
+import io.github.ovso.ktest.data.network.model.Search;
 import io.github.ovso.ktest.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.ktest.ui.base.rx.Schedulers;
 import io.github.ovso.ktest.ui.main.MainPresenterImpl;
 import io.github.ovso.ktest.ui.main.search.vo.SearchFragmentArgs;
-import io.github.ovso.ktest.utils.RxBus;
+import io.github.ovso.ktest.ui.base.rx.RxBus;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
@@ -38,7 +39,6 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
 
   @Override public void onStart() {
     view.setupRecyclerView();
-    //view.setupRecyclerViewDivider();
     rxBusObservable();
   }
 
@@ -62,6 +62,7 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
         .subscribe(reqSearchObserver);
   }
 
+  @WorkerThread
   private List<Document> reqSearchBiFunction(List<Document> documents, List<Document> documents2) {
     List<Document> newDocments = new ArrayList<>();
     newDocments.addAll(documents);

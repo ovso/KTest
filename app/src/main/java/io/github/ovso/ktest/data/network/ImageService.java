@@ -1,6 +1,6 @@
 package io.github.ovso.ktest.data.network;
 
-import io.github.ovso.ktest.data.network.model.image.Search;
+import io.github.ovso.ktest.data.network.model.Search;
 import io.reactivex.Observable;
 import java.util.Map;
 import retrofit2.http.GET;

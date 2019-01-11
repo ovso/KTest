@@ -19,7 +19,7 @@ public abstract class BaseFragment extends DaggerFragment {
     return inflater.inflate(getLayoutResId(), container, false);
   }
 
-  @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+  @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     unbinder = ButterKnife.bind(this, view);
   }

@@ -2,8 +2,7 @@ package io.github.ovso.ktest.ui.main;
 
 import android.text.TextUtils;
 import io.github.ovso.ktest.ui.base.rx.Schedulers;
-import io.github.ovso.ktest.utils.ResourceProvider;
-import io.github.ovso.ktest.utils.RxBus;
+import io.github.ovso.ktest.ui.base.rx.RxBus;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.CompositeDisposable;
