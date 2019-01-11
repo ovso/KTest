@@ -1,10 +1,10 @@
-package io.github.ovso.ktest.ui.main.search;
+package io.github.ovso.ktest.ui.main.bucket;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 
-public interface SearchFragmentPresenter extends LifecycleObserver {
+public interface BucketFragmentPresenter extends LifecycleObserver {
   @OnLifecycleEvent(Lifecycle.Event.ON_START)
   void onStart();
 

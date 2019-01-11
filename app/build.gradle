@@ -61,7 +61,7 @@ dependencies {
   implementation deps.okhttp.runtime
   implementation deps.okhttp.logging_interceptor
 
-  implementation deps.rvdivider
+  implementation deps.lottie
 
   implementation deps.timber
 }

@@ -38,7 +38,7 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
 
   @Override public void onStart() {
     view.setupRecyclerView();
-    view.setupRecyclerViewDivider();
+    //view.setupRecyclerViewDivider();
     rxBusObservable();
   }
 

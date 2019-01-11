@@ -1,4 +1,4 @@
-package io.github.ovso.ktest.ui.main.search.adapter;
+package io.github.ovso.ktest.ui.main.bucket.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +16,11 @@ import io.github.ovso.ktest.utils.RxBus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-public class SearchViewHolder extends BaseViewHolder<Document> {
+public class BucketViewHolder extends BaseViewHolder<Document> {
   @BindView(R.id.imageview_searchviewholder) ImageView thumbImageView;
   @BindView(R.id.lottie_search_bucket) LottieAnimationView bucketLottie;
 
-  private SearchViewHolder(View itemView) {
+  private BucketViewHolder(View itemView) {
     super(itemView);
   }
 
@@ -50,8 +50,8 @@ public class SearchViewHolder extends BaseViewHolder<Document> {
     return ((App) itemView.getContext().getApplicationContext()).getRxBus();
   }
 
-  public static SearchViewHolder create(ViewGroup parent) {
-    return new SearchViewHolder(
+  public static BucketViewHolder create(ViewGroup parent) {
+    return new BucketViewHolder(
         LayoutInflater.from(parent.getContext()).inflate(R.layout.item_search, parent, false));
   }
 

@@ -19,12 +19,12 @@ versions.rxandroid = "2.1.0"
 versions.butterknife = '9.0.0-rc2'
 versions.lombok = '1.16.18'
 versions.jsr250_api = '1.0'
-versions.rvdivider = '2.0.1'
 versions.easyprefs = '1.9.0'
 versions.lottie = '2.8.0'
 versions.android_gradle = "3.2.1"
 versions.hugo = '1.2.1'
 versions.material = '1.1.0-alpha02'
+versions.lottie = '2.8.0'
 
 def deps = [:]
 
@@ -81,7 +81,7 @@ deps.rx = rx;
 
 deps.timber = "com.jakewharton.timber:timber:$versions.timber"
 deps.jsr250_api = "javax.annotation:jsr250-api:$versions.jsr250_api"
-deps.rvdivider = "com.github.fondesa:recycler-view-divider:$versions.rvdivider"
+deps.lottie = "com.airbnb.android:lottie:$versions.lottie"
 
 ext.deps = deps
 
