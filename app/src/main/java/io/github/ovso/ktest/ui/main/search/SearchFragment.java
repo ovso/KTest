@@ -46,7 +46,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentPresen
 
   @Override public void refresh() {
     adapterView.refresh();
-    if (searchSuccessListener != null) {
+    if (searchSuccessListener != null && adapter.getItemCount() > 0) {
       searchSuccessListener.onSearchSuccess();
     }
   }
