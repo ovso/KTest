@@ -42,6 +42,15 @@ public class SearchViewHolder extends BaseViewHolder<Document> {
     data.setBucket(!data.isBucket());
     bucketLottie.setProgress(getProgress());
     getRxBus().send(new RxBusEvent(data));
+    handleAnimation();
+  }
+
+  private void handleAnimation() {
+    if (data.isBucket()) {
+      bucketLottie.playAnimation();
+    } else {
+      bucketLottie.cancelAnimation();
+    }
   }
 
   private float getProgress() {
