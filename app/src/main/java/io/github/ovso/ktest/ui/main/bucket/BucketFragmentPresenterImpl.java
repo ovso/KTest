@@ -8,14 +8,15 @@ import io.github.ovso.ktest.ui.main.bucket.vo.BucketFragmentArgs;
 import io.github.ovso.ktest.ui.main.search.adapter.SearchViewHolder;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import timber.log.Timber;
 
 public class BucketFragmentPresenterImpl implements BucketFragmentPresenter {
 
   private final View view;
   private final RxBus rxBus;
   private final Schedulers schedulers;
-  private CompositeDisposable compositeDisposable = new CompositeDisposable();
   private BaseAdapterDataModel<Document> adapterDataModel;
+  private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
   public BucketFragmentPresenterImpl(BucketFragmentArgs args) {
     view = args.getView();

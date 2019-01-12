@@ -51,9 +51,8 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override public void onSuccess(String q) {
-      if (!TextUtils.isEmpty(q)) {
-        rxBus.send(new RxBusEvent(q));
-      }
+      Timber.d("onSuccess = %s", q);
+      rxBus.send(new RxBusEvent(q));
     }
 
     @Override public void onError(Throwable e) {

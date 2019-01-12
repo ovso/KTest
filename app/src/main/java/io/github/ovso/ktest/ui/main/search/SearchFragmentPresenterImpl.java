@@ -17,6 +17,7 @@ import io.reactivex.disposables.Disposable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import timber.log.Timber;
 
 public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
 
@@ -77,16 +78,20 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
     }
 
     @Override public void onNext(List<Document> documents) {
+      Timber.d("items size = %s", documents.size());
+      adapterDataModel.clear();
       adapterDataModel.addAll(documents);
       view.refresh();
     }
 
     @Override public void onError(Throwable e) {
-
+      Timber.e(e);
+      adapterDataModel.clear();
+      view.refresh();
     }
 
     @Override public void onComplete() {
-
+      Timber.d("onComplete");
     }
   };
 

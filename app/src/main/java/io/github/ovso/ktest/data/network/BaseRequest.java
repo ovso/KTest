@@ -61,7 +61,7 @@ public abstract class BaseRequest<T> {
     return param;
   }
 
-  protected boolean isLog() {
+  private boolean isLog() {
     return false;
   }
 }
