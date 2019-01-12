@@ -38,6 +38,6 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
   }
 
   public boolean isTitle() {
-    return false;
+    return true;
   }
 }
