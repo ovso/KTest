@@ -51,7 +51,6 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override public void onSuccess(String query) {
       rxBus.send(new RxBusEvent(query));
-      view.hideKeyboard();
     }
 
     @Override public void onError(Throwable e) {

@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import com.google.android.material.tabs.TabLayout;
 import io.github.ovso.ktest.R;
+import io.github.ovso.ktest.ui.base.listener.SearchSuccessListener;
 import io.github.ovso.ktest.ui.base.listener.SimpleOnQueryTextListener;
 import io.github.ovso.ktest.ui.base.view.BaseActivity;
 import io.github.ovso.ktest.ui.main.bucket.BucketFragment;
@@ -17,7 +18,8 @@ import java.util.Arrays;
 import java.util.List;
 import javax.inject.Inject;
 
-public class MainActivity extends BaseActivity implements MainPresenter.View {
+public class MainActivity extends BaseActivity
+    implements MainPresenter.View, SearchSuccessListener {
   @BindView(R.id.tablayout_main) TabLayout tabLayout;
   @BindView(R.id.viewpager_main) ViewPager viewPager;
   @Inject MainPresenter presenter;
@@ -38,7 +40,7 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
 
   @Override public void hideKeyboard() {
     if (searchView != null) {
-      searchView.postDelayed(() -> searchView.clearFocus(), 1000);
+      searchView.clearFocus();
     }
   }
 
@@ -73,4 +75,8 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
       return presenter.onQueryTextChange(newText);
     }
   };
+
+  @Override public void onSearchSuccess() {
+    hideKeyboard();
+  }
 }
