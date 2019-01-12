@@ -1,8 +1,7 @@
 package io.github.ovso.ktest.ui.main;
 
-import android.text.TextUtils;
-import io.github.ovso.ktest.ui.base.rx.Schedulers;
 import io.github.ovso.ktest.ui.base.rx.RxBus;
+import io.github.ovso.ktest.ui.base.rx.Schedulers;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.CompositeDisposable;
@@ -50,9 +49,9 @@ public class MainPresenterImpl implements MainPresenter {
       compositeDisposable.add(d);
     }
 
-    @Override public void onSuccess(String q) {
-      Timber.d("onSuccess = %s", q);
-      rxBus.send(new RxBusEvent(q));
+    @Override public void onSuccess(String query) {
+      rxBus.send(new RxBusEvent(query));
+      view.hideKeyboard();
     }
 
     @Override public void onError(Throwable e) {

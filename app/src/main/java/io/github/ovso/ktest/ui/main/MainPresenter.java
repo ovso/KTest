@@ -20,10 +20,8 @@ public interface MainPresenter extends LifecycleObserver {
 
     void setupTabLayout();
 
-    void showSearchView();
-
-    void hideSearchView();
-
     void navigateToSearchFragment();
+
+    void hideKeyboard();
   }
 }

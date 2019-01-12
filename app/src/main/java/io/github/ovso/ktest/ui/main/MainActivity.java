@@ -15,14 +15,13 @@ import io.github.ovso.ktest.ui.main.search.SearchFragment;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View {
   @BindView(R.id.tablayout_main) TabLayout tabLayout;
   @BindView(R.id.viewpager_main) ViewPager viewPager;
   @Inject MainPresenter presenter;
-  private Menu optionsMenu;
+  private SearchView searchView;
 
   @Override protected int getLayoutResId() {
     return R.layout.activity_main;
@@ -33,20 +32,14 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
     tabLayout.setTabMode(TabLayout.MODE_FIXED);
   }
 
-  @Override public void showSearchView() {
-    if (Objects.nonNull(optionsMenu)) {
-      optionsMenu.findItem(R.id.action_search).setVisible(true);
-    }
-  }
-
-  @Override public void hideSearchView() {
-    if (Objects.nonNull(optionsMenu)) {
-      optionsMenu.findItem(R.id.action_search).setVisible(false);
-    }
-  }
-
   @Override public void navigateToSearchFragment() {
     viewPager.setCurrentItem(0, true);
+  }
+
+  @Override public void hideKeyboard() {
+    if (searchView != null) {
+      searchView.postDelayed(() -> searchView.clearFocus(), 1000);
+    }
   }
 
   @Override public void setupViewPager() {
@@ -70,8 +63,8 @@ public class MainActivity extends BaseActivity implements MainPresenter.View {
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.options_menu, menu);
     MenuItem searchMenu = menu.findItem(R.id.action_search);
-    ((SearchView) searchMenu.getActionView()).setOnQueryTextListener(simpleOnQueryTextListener);
-    optionsMenu = menu;
+    searchView = (SearchView) searchMenu.getActionView();
+    searchView.setOnQueryTextListener(simpleOnQueryTextListener);
     return true;
   }
 
