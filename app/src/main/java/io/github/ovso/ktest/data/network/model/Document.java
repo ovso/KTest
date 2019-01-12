@@ -2,7 +2,6 @@ package io.github.ovso.ktest.data.network.model;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.gson.annotations.Expose;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
