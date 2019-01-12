@@ -1,5 +1,6 @@
 package io.github.ovso.ktest.ui.main.search;
 
+import android.text.TextUtils;
 import androidx.annotation.WorkerThread;
 import io.github.ovso.ktest.data.network.ImageRequest;
 import io.github.ovso.ktest.data.network.VclipRequest;
@@ -44,14 +45,26 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
   }
 
   private void rxBusObservable() {
-    Disposable disposable = rxBus.toObservable().subscribe(this::observer);
+    Disposable disposable =
+        rxBus.toObservable().observeOn(schedulers.ui()).subscribe(this::observer);
     compositeDisposable.add(disposable);
   }
 
   private void observer(Object o) {
     if (o instanceof MainPresenterImpl.RxBusEvent) {
-      reqSearch(((MainPresenterImpl.RxBusEvent) o).getNewText());
+      String query = ((MainPresenterImpl.RxBusEvent) o).getQuery();
+      if (TextUtils.isEmpty(query)) {
+        handleEmpty();
+      } else {
+        view.showLoading();
+        reqSearch(query);
+      }
     }
+  }
+
+  private void handleEmpty() {
+    adapterDataModel.clear();
+    view.refresh();
   }
 
   private void reqSearch(String query) {
@@ -78,28 +91,27 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
     }
 
     @Override public void onNext(List<Document> documents) {
-      Timber.d("items size = %s", documents.size());
-      adapterDataModel.clear();
-      adapterDataModel.addAll(documents);
-      view.refresh();
+      if (documents != null && !documents.isEmpty()) {
+        adapterDataModel.clear();
+        adapterDataModel.addAll(documents);
+        view.refresh();
+      } else {
+        handleEmpty();
+      }
     }
 
     @Override public void onError(Throwable e) {
       Timber.e(e);
-      adapterDataModel.clear();
-      view.refresh();
+      handleEmpty();
+      view.hideLoading();
     }
 
     @Override public void onComplete() {
-      Timber.d("onComplete");
+      view.hideLoading();
     }
   };
 
   @Override public void onDestroy() {
-    clear();
-  }
-
-  private void clear() {
     compositeDisposable.clear();
   }
 }

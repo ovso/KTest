@@ -61,6 +61,6 @@ public class MainPresenterImpl implements MainPresenter {
   };
 
   @AllArgsConstructor public final static class RxBusEvent {
-    @Getter private String newText;
+    @Getter private String query;
   }
 }
